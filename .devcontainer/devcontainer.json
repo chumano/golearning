@@ -1,0 +1,74 @@
+{
+    "name": "golearning-devenv",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "VARIANT": "ubuntu-22.04"
+        }
+    },
+    "runArgs": [
+        "-u",
+        "vscode"
+    ],
+    "forwardPorts": [
+        5000
+    ],
+    "postCreateCommand": "/tmp/install-dev-tools.sh",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.eol": "\n",
+                //"editor.formatOnSave": true,
+                "go.buildTags": "",
+                "go.toolsEnvVars": {
+                    "CGO_ENABLED": "0"
+                },
+                "go.useLanguageServer": true,
+                "[go]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": true
+                    },
+                    // Optional: Disable snippets, as they conflict with completion ranking.
+                    "editor.snippetSuggestions": "none"
+                },
+                "[go.mod]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": true
+                    }
+                },
+                "[sql]": {
+                    "editor.formatOnSave": true
+                },
+                "go.testEnvVars": {
+                    "CGO_ENABLED": "1"
+                },
+                "go.testFlags": [
+                    "-v",
+                    "-race"
+                ],
+                "go.testTimeout": "10s",
+                "go.coverOnSingleTest": true,
+                "go.coverOnSingleTestFile": true,
+                "go.coverOnTestPackage": true,
+                "go.lintTool": "golangci-lint",
+                "go.lintOnSave": "package",
+                "gopls": {
+                    "usePlaceholders": false,
+                    "staticcheck": true,
+                    "vulncheck": "Imports"
+                },
+                "remote.extensionKind": {
+                    "ms-azuretools.vscode-docker": "workspace"
+                }
+            },
+            "extensions": [
+                "golang.go",
+                "davidanson.vscode-markdownlint",
+                "shardulm94.trailing-spaces",
+                "IBM.output-colorizer"
+            ]
+        }
+    }
+}
