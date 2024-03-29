@@ -9,6 +9,7 @@ export default defineConfig({
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
   server: {
+    port: 3000,
     proxy: {
       // string shorthand: http://localhost:5173/foo -> http://localhost:4567/foo
       '/foo': 'http://localhost:4567',

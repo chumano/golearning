@@ -3,5 +3,7 @@ package main
 import "github.com/golearning/cmd"
 
 func main() {
-	cmd.Run()
+	app := cmd.App{}
+	app.Setup()
+	app.Run("localhost:8080")
 }
