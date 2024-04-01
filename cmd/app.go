@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/golearning/api"
-	"github.com/golearning/utils"
+	"github.com/golearning/internal/api"
+	"github.com/golearning/internal/utils"
 
 	"github.com/gin-gonic/gin"
 
@@ -31,6 +31,8 @@ func (app *App) Setup() {
 	})
 
 	router.GET("/api/albums", api.GetAlbums)
+
+	router.POST("api/signin", api.SignIn)
 }
 
 func (app *App) Run(addr string) {
@@ -55,5 +57,6 @@ func (app *App) serveWebStatic() {
 			c.File(webDir + "/index.html")
 		}
 		//default 404 page not found
+		//c.JSON(http.StatusNotFound, gin.H{})
 	})
 }

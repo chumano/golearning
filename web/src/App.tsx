@@ -9,13 +9,20 @@ import {
 
 import MainLayout from '@/components/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
+import MapLayout from './components/layouts/MapLayout';
 
 const SettingsPage = lazy(() =>import('@/components/Counter'))
+const MapPage = lazy(() =>import('@/pages/MapPage/MapPage'))
+
+const ErrorBoundary =()=>{
+  return <>ERROR</>
+}
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout/>,
+    errorElement: <ErrorBoundary />,
     children:[
       {
         path: "/",
@@ -26,9 +33,20 @@ const router = createBrowserRouter([
       {
         path: "/counter",
         element: <SettingsPage/>,
+      },
+      {
+        path: "/map",
+        element: <MapLayout/>,
+        children: [
+          {
+            path :"",
+            element: <MapPage/>
+          }
+        ]
       }
     ]
-  }
+  },
+  
 ]);
 
 function App() {
