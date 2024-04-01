@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export const Counter = () => {
+ const Counter = () => {
     const [count, setCount] = useState(0)
   return (
     <div className="card">
@@ -11,3 +11,4 @@ export const Counter = () => {
       </div>
   )
 }
+export default Counter
